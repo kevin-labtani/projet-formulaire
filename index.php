@@ -1,20 +1,12 @@
 <?php
 
 // form vars
-$firstName = $lastName = $email = $country = $gender = $topic = $message = '';
+$firstName = $lastName = $email = $message = '';
 
 // errors array
-$errors = [];
+$errors = [$firstName => '', $lastName => '', $email => '', $message => ''];
 
 if (isset($_POST['submit'])) {
-    $firstName = $_POST['firstName'];
-    $lastName = $_POST['lastName'];
-    $email = $_POST['email'];
-    $country = $_POST['country'];
-    $gender = $_POST['gender'];
-    $topic = $_POST['topic'];
-    $message = $_POST['message'];
-
     $filters = [
         'firstName' => FILTER_SANITIZE_STRING,
         'lastName' => FILTER_SANITIZE_STRING,
@@ -27,13 +19,18 @@ if (isset($_POST['submit'])) {
 
     $result = filter_input_array(INPUT_POST, $filters);
 
-    echo $result['firstName'].'<br/>';
-    echo $result['lastName'].'<br/>';
-    echo $result['email'].'<br/>';
-    echo $result['country'].'<br/>';
-    echo $result['gender'].'<br/>';
-    echo $result['topic'].'<br/>';
-    echo $result['message'].'<br/>';
+    $firstName = $result['firstName'].'<br/>';
+    $lastName = $result['lastName'].'<br/>';
+    $email = $result['email'].'<br/>';
+    $message = $result['country'].'<br/>';
+    $gender = $result['gender'].'<br/>';
+    $topic = $result['topic'].'<br/>';
+    $message = $result['message'].'<br/>';
+
+    if (empty($result['email'])) {
+        $errors['email'] = 'An email is required <br/>';
+        echo $errors['email'];
+    }
 }
 
 // generate country selector
@@ -58,17 +55,17 @@ $countries = ['BE' => 'Belgium', 'DK' => 'Denmark', 'DE' => 'Germany', 'IE' => '
         <section class="container section">
             <div class="row">
                 <div class="col s12 m6 offset-m3">
-                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data">
+                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
                         <div class="input-field">
-                            <input type="text" name="firstName" id="firstName" value=""/>
+                            <input type="text" name="firstName" id="firstName" value="<?php echo htmlspecialchars($result['firstName'] ?? ''); ?>"/>
                             <label for="firstName">First Name</label>
                         </div>
                         <div class="input-field">
-                            <input type="text" name="lastName" id="lastName" value=""/>
+                            <input type="text" name="lastName" id="lastName" value="<?php echo htmlspecialchars($result['lastName'] ?? ''); ?>"/>
                             <label for="lastName">Last Name</label>
                         </div>
                         <div class="input-field">
-                            <input type="email" name="email" id="email" value=""/>
+                            <input type="email" name="email" id="email" value="<?php echo htmlspecialchars($result['email'] ?? ''); ?>"/>
                             <label for="email">Email</label>
                         </div>
                         <div class="input-field">
@@ -105,7 +102,7 @@ $countries = ['BE' => 'Belgium', 'DK' => 'Denmark', 'DE' => 'Germany', 'IE' => '
                                 name="message"
                                 class="materialize-textarea"
                                 id="message"
-                            ></textarea>
+                            ><?php echo htmlspecialchars($result['message'] ?? ''); ?></textarea>
                             <label for="message">Your Message</label>
                         </div>
                         <div class="input-field center">
