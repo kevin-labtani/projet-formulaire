@@ -4,9 +4,10 @@
 $firstName = $lastName = $email = $message = '';
 
 // errors array
-$errors = [$firstName => '', $lastName => '', $email => '', $message => ''];
+$errors = ['firstName' => '', 'lastName' => '', 'email' => '', 'message' => '', 'gender' => '', 'country' => ''];
 
 if (isset($_POST['submit'])) {
+    // filter list for sanitize and validate entries
     $filters = [
         'firstName' => FILTER_SANITIZE_STRING,
         'lastName' => FILTER_SANITIZE_STRING,
@@ -17,8 +18,10 @@ if (isset($_POST['submit'])) {
         'message' => FILTER_SANITIZE_STRING,
     ];
 
+    // array with sanitized vars
     $result = filter_input_array(INPUT_POST, $filters);
 
+    // grab all sanitized vars
     $firstName = $result['firstName'].'<br/>';
     $lastName = $result['lastName'].'<br/>';
     $email = $result['email'].'<br/>';
@@ -29,7 +32,30 @@ if (isset($_POST['submit'])) {
 
     if (empty($result['email'])) {
         $errors['email'] = 'An email is required <br/>';
-        echo $errors['email'];
+    }
+
+    if (empty($result['firstName'])) {
+        $errors['firstName'] = 'A first name is required <br/>';
+    }
+
+    if (empty($result['lastName'])) {
+        $errors['lastName'] = 'A last name is required <br/>';
+    }
+
+    if (empty($result['email'])) {
+        $errors['email'] = 'An email is required <br/>';
+    }
+
+    if (empty($result['message'])) {
+        $errors['message'] = 'A message is required <br/>';
+    }
+
+    if (empty($result['country'])) {
+        $errors['country'] = 'A country is required <br/>';
+    }
+
+    if (empty($result['gender'])) {
+        $errors['gender'] = 'A gender is required <br/>';
     }
 }
 
@@ -57,16 +83,19 @@ $countries = ['BE' => 'Belgium', 'DK' => 'Denmark', 'DE' => 'Germany', 'IE' => '
                 <div class="col s12 m6 offset-m3">
                     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
                         <div class="input-field">
-                            <input type="text" name="firstName" id="firstName" value="<?php echo htmlspecialchars($result['firstName'] ?? ''); ?>"/>
                             <label for="firstName">First Name</label>
+                            <input type="text" name="firstName" id="firstName" value="<?php echo htmlspecialchars($result['firstName'] ?? ''); ?>"/>
+                            <div class="red-text"><?php echo $errors['firstName']; ?>
                         </div>
                         <div class="input-field">
-                            <input type="text" name="lastName" id="lastName" value="<?php echo htmlspecialchars($result['lastName'] ?? ''); ?>"/>
                             <label for="lastName">Last Name</label>
+                            <input type="text" name="lastName" id="lastName" value="<?php echo htmlspecialchars($result['lastName'] ?? ''); ?>"/>
+                            <div class="red-text"><?php echo $errors['lastName']; ?>
                         </div>
                         <div class="input-field">
-                            <input type="email" name="email" id="email" value="<?php echo htmlspecialchars($result['email'] ?? ''); ?>"/>
                             <label for="email">Email</label>
+                            <input type="email" name="email" id="email" value="<?php echo htmlspecialchars($result['email'] ?? ''); ?>"/>
+                            <div class="red-text"><?php echo $errors['email']; ?>
                         </div>
                         <div class="input-field">
                             <select name="country" id="country">
@@ -77,6 +106,7 @@ $countries = ['BE' => 'Belgium', 'DK' => 'Denmark', 'DE' => 'Germany', 'IE' => '
                             ?>
                             </select>
                             <label>Select your country</label>
+                            <div class="red-text"><?php echo $errors['country']; ?>
                         </div>
                         <div class="input-field">
                             <select name="gender" id="gender">
@@ -86,6 +116,7 @@ $countries = ['BE' => 'Belgium', 'DK' => 'Denmark', 'DE' => 'Germany', 'IE' => '
                             <option value="X">X</option>
                             </select>
                             <label>Select your gender</label>
+                            <div class="red-text"><?php echo $errors['gender']; ?>
                         </div>
                         <div class="input-field">
                             <select multiple name="topic" id="topic">
@@ -98,15 +129,16 @@ $countries = ['BE' => 'Belgium', 'DK' => 'Denmark', 'DE' => 'Germany', 'IE' => '
                             <label>Select your Message Topic</label>
                         </div>
                         <div class="input-field">
+                            <label for="message">Your Message</label>
                             <textarea
                                 name="message"
                                 class="materialize-textarea"
                                 id="message"
                             ><?php echo htmlspecialchars($result['message'] ?? ''); ?></textarea>
-                            <label for="message">Your Message</label>
+                            <div class="red-text"><?php echo $errors['message']; ?>
                         </div>
                         <div class="input-field center">
-                            <button class="btn-large" type="submit" name="submit" value="submit">Submit</button>
+                            <button class="btn-large waves-effect waves-light" type="submit" name="submit" value="submit">Submit</button>
                         </div>
                     </form>
                 </div>
