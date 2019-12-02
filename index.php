@@ -1,5 +1,41 @@
 <?php
 
+// form vars
+$firstName = $lastName = $email = $country = $gender = $topic = $message = '';
+
+// errors array
+$errors = [];
+
+if (isset($_POST['submit'])) {
+    $firstName = $_POST['firstName'];
+    $lastName = $_POST['lastName'];
+    $email = $_POST['email'];
+    $country = $_POST['country'];
+    $gender = $_POST['gender'];
+    $topic = $_POST['topic'];
+    $message = $_POST['message'];
+
+    $filters = [
+        'firstName' => FILTER_SANITIZE_STRING,
+        'lastName' => FILTER_SANITIZE_STRING,
+        'country' => FILTER_SANITIZE_STRING,
+        'gender' => FILTER_SANITIZE_STRING,
+        'topic' => FILTER_SANITIZE_STRING,
+        'email' => FILTER_VALIDATE_EMAIL,
+        'message' => FILTER_SANITIZE_STRING,
+    ];
+
+    $result = filter_input_array(INPUT_POST, $filters);
+
+    echo $result['firstName'].'<br/>';
+    echo $result['lastName'].'<br/>';
+    echo $result['email'].'<br/>';
+    echo $result['country'].'<br/>';
+    echo $result['gender'].'<br/>';
+    echo $result['topic'].'<br/>';
+    echo $result['message'].'<br/>';
+}
+
 // generate country selector
 $countries = ['BE' => 'Belgium', 'DK' => 'Denmark', 'DE' => 'Germany', 'IE' => 'Ireland', 'GR' => 'Greece', 'ES' => 'Spain', 'FR' => 'France', 'IT' => 'Italy', 'LU' => 'Luxembourg', 'NL' => 'the Netherlands', 'PT' => 'Portugal', 'GB' => 'the United Kingdom'];
 
@@ -19,7 +55,7 @@ $countries = ['BE' => 'Belgium', 'DK' => 'Denmark', 'DE' => 'Germany', 'IE' => '
 
 
         <!-- CONTACT FORM -->
-        <div class="container section">
+        <section class="container section">
             <div class="row">
                 <div class="col s12 m6 offset-m3">
                     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data">
@@ -36,7 +72,7 @@ $countries = ['BE' => 'Belgium', 'DK' => 'Denmark', 'DE' => 'Germany', 'IE' => '
                             <label for="email">Email</label>
                         </div>
                         <div class="input-field">
-                            <select>
+                            <select name="country" id="country">
                             <option value="" disabled selected>Choose your country</option>
                             <?php foreach ($countries as $key => $value) {
     echo "<option value={$key}>{$value}</option>";
@@ -46,7 +82,7 @@ $countries = ['BE' => 'Belgium', 'DK' => 'Denmark', 'DE' => 'Germany', 'IE' => '
                             <label>Select your country</label>
                         </div>
                         <div class="input-field">
-                            <select>
+                            <select name="gender" id="gender">
                             <option value="" disabled selected>Choose your gender</option>
                             <option value="male">Male</option>
                             <option value="female">Female</option>
@@ -55,7 +91,7 @@ $countries = ['BE' => 'Belgium', 'DK' => 'Denmark', 'DE' => 'Germany', 'IE' => '
                             <label>Select your gender</label>
                         </div>
                         <div class="input-field">
-                            <select multiple>
+                            <select multiple name="topic" id="topic">
                             <option value="other" disabled selected>Choose your message topic</option>
                             <option value="cs">I want to contact Customer Support</option>
                             <option value="sales">I want to contact Sales</option>
@@ -78,7 +114,7 @@ $countries = ['BE' => 'Belgium', 'DK' => 'Denmark', 'DE' => 'Germany', 'IE' => '
                     </form>
                 </div>
             </div>
-        </div>
+        </section>
 
         <!--JavaScript at end of body for optimized loading-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
