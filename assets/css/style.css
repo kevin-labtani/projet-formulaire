@@ -9026,3 +9026,9 @@ input[type=range]::-ms-thumb {
 html {
   font-family: bellotaregular;
 }
+
+header section {
+  height: 90vh;
+  background-image: url("../img/bgheader.jpg");
+  background-size: cover;
+}

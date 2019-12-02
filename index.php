@@ -22,8 +22,15 @@
                     </ul>
                 </div>
             </nav>
+            <section class="row">
+                <img  class="responsive-img" src="./assets/img/logohp.png" alt="">
+            </section>
          </header>
-        <main>
+        <main class="container">
+            <h2>Nos produits</h2>
+            <section class="row">
+                
+            </section>
         </main>
         <footer>
         </footer>
