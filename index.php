@@ -22,13 +22,13 @@ if (isset($_POST['submit'])) {
     $result = filter_input_array(INPUT_POST, $filters);
 
     // grab all sanitized vars
-    $firstName = $result['firstName'].'<br/>';
-    $lastName = $result['lastName'].'<br/>';
-    $email = $result['email'].'<br/>';
-    $message = $result['country'].'<br/>';
-    $gender = $result['gender'].'<br/>';
-    $topic = $result['topic'].'<br/>';
-    $message = $result['message'].'<br/>';
+    $firstName = $result['firstName'];
+    $lastName = $result['lastName'];
+    $email = $result['email'];
+    $message = $result['country'];
+    $gender = $result['gender'];
+    $topic = $result['topic'];
+    $message = $result['message'];
 
     if (empty($result['email'])) {
         $errors['email'] = 'An email is required <br/>';
@@ -65,37 +65,38 @@ $countries = ['BE' => 'Belgium', 'DK' => 'Denmark', 'DE' => 'Germany', 'IE' => '
 ?>
 
 <!DOCTYPE html>
+<html lang="en">
 <html>
     <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <!--Import Google Icon Font-->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!--Import materialize.css-->
         <link rel="stylesheet" href="./assets/css/style.css" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Hackers Poulette</title>
     </head>
     <body>
-    <!-- Champs du formulaire: sujet (3 sujets possibles, plusieurs choix possibles) Tous les champs sont obligatoires, sauf le sujet (dans ce cas, valeur = "Autre") -->
-
-
         <!-- CONTACT FORM -->
         <section class="container section">
+            <h2 class="center-align">Contact Us</h2>
             <div class="row">
                 <div class="col s12 m6 offset-m3">
                     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
                         <div class="input-field">
                             <label for="firstName">First Name</label>
                             <input type="text" name="firstName" id="firstName" value="<?php echo htmlspecialchars($result['firstName'] ?? ''); ?>"/>
-                            <div class="red-text"><?php echo $errors['firstName']; ?>
+                            <div class="red-text"><?php echo $errors['firstName']; ?></div>
                         </div>
                         <div class="input-field">
                             <label for="lastName">Last Name</label>
                             <input type="text" name="lastName" id="lastName" value="<?php echo htmlspecialchars($result['lastName'] ?? ''); ?>"/>
-                            <div class="red-text"><?php echo $errors['lastName']; ?>
+                            <div class="red-text"><?php echo $errors['lastName']; ?></div>
                         </div>
                         <div class="input-field">
                             <label for="email">Email</label>
                             <input type="email" name="email" id="email" value="<?php echo htmlspecialchars($result['email'] ?? ''); ?>"/>
-                            <div class="red-text"><?php echo $errors['email']; ?>
+                            <div class="red-text"><?php echo $errors['email']; ?></div>
                         </div>
                         <div class="input-field">
                             <select name="country" id="country">
@@ -106,7 +107,7 @@ $countries = ['BE' => 'Belgium', 'DK' => 'Denmark', 'DE' => 'Germany', 'IE' => '
                             ?>
                             </select>
                             <label>Select your country</label>
-                            <div class="red-text"><?php echo $errors['country']; ?>
+                            <div class="red-text"><?php echo $errors['country']; ?></div>
                         </div>
                         <div class="input-field">
                             <select name="gender" id="gender">
@@ -116,7 +117,7 @@ $countries = ['BE' => 'Belgium', 'DK' => 'Denmark', 'DE' => 'Germany', 'IE' => '
                             <option value="X">X</option>
                             </select>
                             <label>Select your gender</label>
-                            <div class="red-text"><?php echo $errors['gender']; ?>
+                            <div class="red-text"><?php echo $errors['gender']; ?></div>
                         </div>
                         <div class="input-field">
                             <select multiple name="topic" id="topic">
@@ -135,7 +136,7 @@ $countries = ['BE' => 'Belgium', 'DK' => 'Denmark', 'DE' => 'Germany', 'IE' => '
                                 class="materialize-textarea"
                                 id="message"
                             ><?php echo htmlspecialchars($result['message'] ?? ''); ?></textarea>
-                            <div class="red-text"><?php echo $errors['message']; ?>
+                            <div class="red-text"><?php echo $errors['message']; ?></div>
                         </div>
                         <div class="input-field center">
                             <button class="btn-large waves-effect waves-light" type="submit" name="submit" value="submit">Submit</button>
