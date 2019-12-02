@@ -23,7 +23,21 @@ html {
 // header content 
 
 header{
-  
+  section{
+    text-align: center;
+  }
+  .sidenav{
+    background-color: $secondary-color;
+    text-align: center;
+  a{
+    color: white;
+    transition: color;
+    transition-duration: .5s;
+    &:hover{
+      color: $primary-color;
+    }
+  }
+}
  section{
    height: 100vh;
    background-image: url("../img/bgheader.jpg");
@@ -39,10 +53,8 @@ main {
   }
   section{
     height: 100vh;
-   .cardcontent{
-     display: flex;
-     flex-direction: column;
-     justify-content: center;
+   .cardproduct{
+     margin-left: 15vw;
    }
     .card {
       margin: 5px;

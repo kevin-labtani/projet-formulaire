@@ -12,24 +12,32 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
+             <!-- HEADER -->   
         <header>
             <nav>
                 <div class="nav-wrapper">
                     <a href="#" class="brand-logo center">Hacker Poulette</a>
+                    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                     <ul id="nav-mobile" class="left hide-on-med-and-down">
                         <li><a href="#">Nos produits</a></li>
                         <li><a href="#">Nous contacter</a></li>
                     </ul>
                 </div>
             </nav>
+            <ul class="sidenav" id="mobile-demo">
+                <img  class="responsive-img" src="./assets/img/logohp.png" alt="">
+                <li><a href="#">Nos Produits</a></li>
+                <li><a href="#">Nous contacter</a></li>
+            </ul>
             <section class="row">
                 <img  class="responsive-img" src="./assets/img/logohp.png" alt="">
             </section>
          </header>
+                 <!-- MAIN -->        
         <main>
-            
+                <!-- SECTION OUR PORDUCTS -->   
             <section class="section container">
-                <div class="row">
+                <div class="row cardproduct">
                     <h2 class=" col s12">Our products</h2>
                     <ul class="tabs">
                         <li class="tab col s3"><a href="#card-panel-1">Rasberry 4</a></li>
@@ -38,7 +46,7 @@
                     </ul>
                     <div id="card-panel-1">
                         
-                        <div class="card  col medium l3 m5 s12">
+                        <div class="card small col l3 m5 s12">
                             <div class="card-image waves-effect waves-block waves-light">
                                 <img class="activator" src="./assets/img/rasberrypi4.jpg">
                             </div>
@@ -51,7 +59,7 @@
                             </div>
                         </div>
 
-                        <div class="card  col medium  l3 m5 s12">
+                        <div class="card  col small  l3 m5 s12">
                             <div class="card-image waves-effect waves-block waves-light">
                                 <img class="activator" src="./assets/img/kitrasberry4.jpg">
                             </div>
@@ -64,7 +72,7 @@
                             </div>
                         </div>
 
-                        <div class="card  col medium  l3 m5 s12">
+                        <div class="card  col small  l3 m5 s12">
                             <div class="card-image waves-effect waves-block waves-light">
                                 <img class="activator" src="./assets/img/fullhdscreen.jpg">
                             </div>
@@ -79,7 +87,7 @@
                     </div>
                     <div id="card-panel-2">
                         
-                        <div class="card medium  col l3 m5 s12">
+                        <div class="card small  col l3 m5 s12">
                             <div class="card-image waves-effect waves-block waves-light">
                                 <img class="activator" src="./assets/img/aplus.jpg">
                             </div>
@@ -92,7 +100,7 @@
                             </div>
                         </div>
 
-                        <div class="card medium  col l3 m5 s12">
+                        <div class="card small  col l3 m5 s12">
                             <div class="card-image waves-effect waves-block waves-light">
                                 <img class="activator" src="./assets/img/bplus.jpg">
                             </div>
@@ -105,7 +113,7 @@
                             </div>
                         </div>
 
-                        <div class="card medium  col l3 m5 s12">
+                        <div class="card small  col l3 m5 s12">
                             <div class="card-image waves-effect waves-block waves-light">
                                 <img class="activator" src="./assets/img/bsimple.jpg">
                             </div>
@@ -119,7 +127,7 @@
                         </div>
                     </div>
                     <div id="card-panel-3">
-                        <div class="card medium  col l3 m5 s12">
+                        <div class="card small col l3 m5 s12">
                             <div class="card-image waves-effect waves-block waves-light">
                                 <img class="activator" src="./assets/img/powersupply.jpg">
                             </div>
@@ -132,7 +140,7 @@
                             </div>
                         </div>
 
-                        <div class="card medium  col l3 m5 s12">
+                        <div class="card small  col l3 m5 s12">
                             <div class="card-image waves-effect waves-block waves-light">
                                 <img class="activator" src="./assets/img/adptateur.jpg">
                             </div>
@@ -145,7 +153,7 @@
                             </div>
                         </div>
 
-                        <div class="card medium  col l3 m5 s12">
+                        <div class="card small  col l3 m5 s12">
                             <div class="card-image waves-effect waves-block waves-light">
                                 <img class="activator" src="./assets/img/guide.jpg">
                             </div>
@@ -161,8 +169,9 @@
                 </div>
             </section>
         </main>
-
+                 <!-- FOOTER -->   
         <footer>
+
         </footer>
         <!--JavaScript at end of body for optimized loading-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

@@ -9026,6 +9026,27 @@ html {
 }
 
 header section {
+  text-align: center;
+}
+
+header .sidenav {
+  background-color: #303030;
+  text-align: center;
+}
+
+header .sidenav a {
+  color: white;
+  -webkit-transition: color;
+  transition: color;
+  -webkit-transition-duration: .5s;
+          transition-duration: .5s;
+}
+
+header .sidenav a:hover {
+  color: #15c5bd;
+}
+
+header section {
   height: 100vh;
   background-image: url("../img/bgheader.jpg");
   background-size: cover;
@@ -9039,17 +9060,8 @@ main section {
   height: 100vh;
 }
 
-main section .cardcontent {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+main section .cardproduct {
+  margin-left: 15vw;
 }
 
 main section .card {
