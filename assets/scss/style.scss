@@ -1,1 +1,12 @@
 @import "./materialize/materialize.scss";
+
+@font-face {
+  font-family: "bellotaregular";
+  src: url("../font/Bellota-Regular-webfont.woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+html {
+  font-family: bellotaregular;
+}
