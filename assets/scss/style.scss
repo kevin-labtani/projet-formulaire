@@ -1,21 +1,53 @@
-@import "./materialize/materialize.scss";
+// use imposed colors and font
+$primary-color: #15c5bd;
+$secondary-color: #303030;
+$font-stack: Bellota, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+  Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif !default;
 
 @font-face {
-  font-family: "bellotaregular";
-  src: url("../font/Bellota-Regular-webfont.woff");
-  font-weight: normal;
-  font-style: normal;
+  font-family: "bellota";
+  src: url("../font/Bellota-Regular-webfont.woff"),
+    url("Bellota-Bold-webfont.woff"), url("Bellota-Italic-webfont.woff");
 }
 
+// import materialize
+@import "./materialize/materialize.scss";
+
+// custom style
 html {
-  font-family: bellotaregular;
+  font-family: bellota;
+ 
+
 }
+
+// header content 
+
 header{
+  
  section{
-   height: 90vh;
+   height: 100vh;
    background-image: url("../img/bgheader.jpg");
    background-size: cover;
-   
- }
+  }
+}
+// main content
+  
+main {
+  
+  h2 {
+    text-align: center;
+  }
+  section{
+    height: 100vh;
+   .cardcontent{
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+   }
+    .card {
+      margin: 5px;
+    }
+  }
+
 }
 
