@@ -6,55 +6,66 @@ $firstName = $lastName = $email = $message = '';
 // errors array
 $errors = ['firstName' => '', 'lastName' => '', 'email' => '', 'message' => '', 'gender' => '', 'country' => ''];
 
+// regex safety check
+$regSafe = '/[\^<,\"@\/\{\}\(\)\*\$%\?=>:\|]+/i';
+$regSafeEmail = '/[\^<,\"\/\{\}\(\)\*\$%\?=>:\|]+/i';
+
+// check for form submit
 if (isset($_POST['submit'])) {
-    // filter list for sanitize and validate entries
+    // filter list to sanitize entries
     $filters = [
         'firstName' => FILTER_SANITIZE_STRING,
         'lastName' => FILTER_SANITIZE_STRING,
         'country' => FILTER_SANITIZE_STRING,
         'gender' => FILTER_SANITIZE_STRING,
         'topic' => FILTER_SANITIZE_STRING,
-        'email' => FILTER_VALIDATE_EMAIL,
+        'email' => FILTER_SANITIZE_EMAIL,
         'message' => FILTER_SANITIZE_STRING,
     ];
 
     // array with sanitized vars
-    $result = filter_input_array(INPUT_POST, $filters);
+    $SanitizedResult = filter_input_array(INPUT_POST, $filters);
 
     // grab all sanitized vars
-    $firstName = $result['firstName'];
-    $lastName = $result['lastName'];
-    $email = $result['email'];
-    $message = $result['country'];
-    $gender = $result['gender'];
-    $topic = $result['topic'];
-    $message = $result['message'];
-
-    if (empty($result['email'])) {
-        $errors['email'] = 'An email is required <br/>';
+    foreach ($filters as $key => $value) {
+        $SanitizedResult[$key] = trim($SanitizedResult[$key]);
     }
 
-    if (empty($result['firstName'])) {
+    // generate error messages
+
+    // sanitized and validated email
+    if (empty($SanitizedResult['email'])) {
+        $errors['email'] = 'An email is required <br/>';
+    } elseif (preg_match($regSafeEmail, $SanitizedResult['email'])) {
+        $errors['email'] = 'Please use valid characters <br/>';
+    } elseif (!filter_var($SanitizedResult['email'], FILTER_VALIDATE_EMAIL)) {
+        $errors['email'] = 'Email must be a valid email address';
+    }
+
+    // sanitized and valid chars for name
+    if (empty($SanitizedResult['firstName'])) {
         $errors['firstName'] = 'A first name is required <br/>';
-    }
+    } elseif (preg_match($regSafe, $SanitizedResult['firstName'])) {
+        $errors['firstName'] = 'Please use valid characters <br/>';
+    } 
 
-    if (empty($result['lastName'])) {
+    // sanitized and valid chars for name
+    if (empty($SanitizedResult['lastName'])) {
         $errors['lastName'] = 'A last name is required <br/>';
+    } elseif (preg_match($regSafe, $SanitizedResult['lastName'])) {
+        $errors['lastName'] = 'Please use valid characters <br/>';
     }
 
-    if (empty($result['email'])) {
-        $errors['email'] = 'An email is required <br/>';
-    }
-
-    if (empty($result['message'])) {
+    // sanitized message, chose to not check for valid chars as
+    if (empty($SanitizedResult['message'])) {
         $errors['message'] = 'A message is required <br/>';
     }
 
-    if (empty($result['country'])) {
+    if (empty($SanitizedResult['country'])) {
         $errors['country'] = 'A country is required <br/>';
     }
 
-    if (empty($result['gender'])) {
+    if (empty($SanitizedResult['gender'])) {
         $errors['gender'] = 'A gender is required <br/>';
     }
 }
@@ -83,21 +94,25 @@ $countries = ['BE' => 'Belgium', 'DK' => 'Denmark', 'DE' => 'Germany', 'IE' => '
             <div class="row">
                 <div class="col s12 m6 offset-m3">
                     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+                        <!-- first name -->
                         <div class="input-field">
                             <label for="firstName">First Name</label>
-                            <input type="text" name="firstName" id="firstName" value="<?php echo htmlspecialchars($result['firstName'] ?? ''); ?>"/>
+                            <input type="text" name="firstName" id="firstName" value="<?php echo $SanitizedResult['firstName'] ?? ''; ?>"/>
                             <div class="red-text"><?php echo $errors['firstName']; ?></div>
                         </div>
+                        <!-- last name -->
                         <div class="input-field">
                             <label for="lastName">Last Name</label>
-                            <input type="text" name="lastName" id="lastName" value="<?php echo htmlspecialchars($result['lastName'] ?? ''); ?>"/>
+                            <input type="text" name="lastName" id="lastName" value="<?php echo $SanitizedResult['lastName'] ?? ''; ?>"/>
                             <div class="red-text"><?php echo $errors['lastName']; ?></div>
                         </div>
+                        <!-- email -->
                         <div class="input-field">
                             <label for="email">Email</label>
-                            <input type="email" name="email" id="email" value="<?php echo htmlspecialchars($result['email'] ?? ''); ?>"/>
+                            <input type="text" name="email" id="email" value="<?php echo $SanitizedResult['email'] ?? ''; ?>"/>
                             <div class="red-text"><?php echo $errors['email']; ?></div>
                         </div>
+                        <!-- country -->
                         <div class="input-field">
                             <select name="country" id="country">
                             <option value="" disabled selected>Choose your country</option>
@@ -109,6 +124,7 @@ $countries = ['BE' => 'Belgium', 'DK' => 'Denmark', 'DE' => 'Germany', 'IE' => '
                             <label>Select your country</label>
                             <div class="red-text"><?php echo $errors['country']; ?></div>
                         </div>
+                        <!-- gender -->
                         <div class="input-field">
                             <select name="gender" id="gender">
                             <option value="" disabled selected>Choose your gender</option>
@@ -119,6 +135,7 @@ $countries = ['BE' => 'Belgium', 'DK' => 'Denmark', 'DE' => 'Germany', 'IE' => '
                             <label>Select your gender</label>
                             <div class="red-text"><?php echo $errors['gender']; ?></div>
                         </div>
+                        <!-- topic -->
                         <div class="input-field">
                             <select multiple name="topic" id="topic">
                             <option value="other" disabled selected>Choose your message topic</option>
@@ -126,20 +143,27 @@ $countries = ['BE' => 'Belgium', 'DK' => 'Denmark', 'DE' => 'Germany', 'IE' => '
                             <option value="sales">I want to contact Sales</option>
                             <option value="info">I want more information about your company</option>
                             <option value="suggest">I want to offer a suggestion</option>
+                            <option value="other">I want to contact you for another reason</option>
                             </select>
                             <label>Select your Message Topic</label>
                         </div>
+                        <!-- message-->
                         <div class="input-field">
                             <label for="message">Your Message</label>
                             <textarea
                                 name="message"
                                 class="materialize-textarea"
                                 id="message"
-                            ><?php echo htmlspecialchars($result['message'] ?? ''); ?></textarea>
+                            ><?php echo $SanitizedResult['message'] ?? ''; ?></textarea>
                             <div class="red-text"><?php echo $errors['message']; ?></div>
                         </div>
                         <div class="input-field center">
                             <button class="btn-large waves-effect waves-light" type="submit" name="submit" value="submit">Submit</button>
+                        </div>
+                        <!-- honeypot -->
+                        <div style="display: none;">
+                            <label for="Name">Name</label>
+                            <input type="text" name="Name" id="Name" value=""/>
                         </div>
                     </form>
                 </div>
