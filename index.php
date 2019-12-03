@@ -134,6 +134,12 @@ function topicSelector($topic)
         echo "<option {$selected} value={$key}>{$value}</option>";
     }
 }
+
+// SEND EMAIL
+// CHECK IF ERROR ARRAY IS EMPTY
+// CHECK IF NONEYPOT (name="Name" id="Name") ISN'T FILLED
+// GRAB VALUES TO BE EMAILED FROM $SanitizedResult ARRAY nb: GRAB TOPIC FROM $_POST['topic'] (it's also an array!!)
+// THEN SEND EMAIL
 ?>
 
 <!DOCTYPE html>
