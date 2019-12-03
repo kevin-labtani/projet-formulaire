@@ -143,7 +143,6 @@ function topicSelector($topic)
 
 <!DOCTYPE html>
 <html lang="en">
-<html>
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -183,7 +182,7 @@ function topicSelector($topic)
                             <select name="country" id="country">
                                 <?php countrySelector($countries); ?>
                             </select>
-                            <label class="grey-text text-darken-4"l>Select your country</label>
+                            <label class="grey-text text-darken-4">Select your country</label>
                             <div class="red-text"><?php echo $errors['country']; ?></div>
                         </div>
                         <!-- gender -->
