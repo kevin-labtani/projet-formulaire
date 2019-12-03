@@ -42,29 +42,37 @@ if (isset($_POST['submit'])) {
         $errors['email'] = 'Email must be a valid email address';
     }
 
-    // sanitized and valid chars for name
+    // sanitized and valid chars and max length for name
     if (empty($SanitizedResult['firstName'])) {
         $errors['firstName'] = 'A first name is required <br/>';
     } elseif (preg_match($regSafe, $SanitizedResult['firstName'])) {
         $errors['firstName'] = 'Please use valid characters <br/>';
-    } 
+    } elseif (strlen($SanitizedResult['firstName']) > 20) {
+        $errors['firstName'] = 'Max length is 20 characters <br/>';
+    }
 
-    // sanitized and valid chars for name
+    // sanitized and valid charsa nd max length for name
     if (empty($SanitizedResult['lastName'])) {
         $errors['lastName'] = 'A last name is required <br/>';
     } elseif (preg_match($regSafe, $SanitizedResult['lastName'])) {
         $errors['lastName'] = 'Please use valid characters <br/>';
+    } elseif (strlen($SanitizedResult['lastName']) > 20) {
+        $errors['lastName'] = 'Max length is 20 characters <br/>';
     }
 
-    // sanitized message, chose to not check for valid chars as
+    // sanitized and max length message, do not check for valid chars as messages might legitimately contain some and sanitization should be enough
     if (empty($SanitizedResult['message'])) {
         $errors['message'] = 'A message is required <br/>';
+    } elseif (strlen($SanitizedResult['message']) > 200) {
+        $errors['message'] = 'Max length is 200 characters <br/>';
     }
 
+    // a country must be selected
     if (empty($SanitizedResult['country'])) {
         $errors['country'] = 'A country is required <br/>';
     }
 
+    // a gender must be selected
     if (empty($SanitizedResult['gender'])) {
         $errors['gender'] = 'A gender is required <br/>';
     }
@@ -97,13 +105,13 @@ $countries = ['BE' => 'Belgium', 'DK' => 'Denmark', 'DE' => 'Germany', 'IE' => '
                         <!-- first name -->
                         <div class="input-field">
                             <label for="firstName">First Name</label>
-                            <input type="text" name="firstName" id="firstName" value="<?php echo $SanitizedResult['firstName'] ?? ''; ?>"/>
+                            <input type="text" name="firstName" id="firstName" data-length="20" value="<?php echo $SanitizedResult['firstName'] ?? ''; ?>"/>
                             <div class="red-text"><?php echo $errors['firstName']; ?></div>
                         </div>
                         <!-- last name -->
                         <div class="input-field">
                             <label for="lastName">Last Name</label>
-                            <input type="text" name="lastName" id="lastName" value="<?php echo $SanitizedResult['lastName'] ?? ''; ?>"/>
+                            <input type="text" name="lastName" id="lastName" data-length="20" value="<?php echo $SanitizedResult['lastName'] ?? ''; ?>"/>
                             <div class="red-text"><?php echo $errors['lastName']; ?></div>
                         </div>
                         <!-- email -->
@@ -154,6 +162,7 @@ $countries = ['BE' => 'Belgium', 'DK' => 'Denmark', 'DE' => 'Germany', 'IE' => '
                                 name="message"
                                 class="materialize-textarea"
                                 id="message"
+                                data-length="200"
                             ><?php echo $SanitizedResult['message'] ?? ''; ?></textarea>
                             <div class="red-text"><?php echo $errors['message']; ?></div>
                         </div>
@@ -177,6 +186,9 @@ $countries = ['BE' => 'Belgium', 'DK' => 'Denmark', 'DE' => 'Germany', 'IE' => '
             document.addEventListener("DOMContentLoaded", function() {
                 M.AutoInit();
             });
+
+            var textNeedCount = document.querySelectorAll('#firstName, #lastName, #message');
+            M.CharacterCounter.init(textNeedCount);
     </script>
     </body>
 </html>
