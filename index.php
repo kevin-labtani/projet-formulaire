@@ -48,7 +48,7 @@ if (isset($_POST['submit'])) {
     } elseif (preg_match($regSafe, $SanitizedResult['firstName'])) {
         $errors['firstName'] = 'Please use valid characters <br/>';
     } elseif (strlen($SanitizedResult['firstName']) > 20) {
-        $errors['firstName'] = 'Max length is 20 characters <br/>';
+        $errors['firstName'] = 'The maximum allowed length is 20 characters <br/>';
     }
 
     // sanitized and valid chars and max length for name
@@ -57,26 +57,27 @@ if (isset($_POST['submit'])) {
     } elseif (preg_match($regSafe, $SanitizedResult['lastName'])) {
         $errors['lastName'] = 'Please use valid characters <br/>';
     } elseif (strlen($SanitizedResult['lastName']) > 20) {
-        $errors['lastName'] = 'Max length is 20 characters <br/>';
+        $errors['lastName'] = 'The maximum allowed length is 20 characters <br/>';
     }
 
     // sanitized and max length message, do not check for valid chars as messages might legitimately contain some and sanitization should be enough
     if (empty($SanitizedResult['message'])) {
         $errors['message'] = 'A message is required <br/>';
     } elseif (strlen($SanitizedResult['message']) > 200) {
-        $errors['message'] = 'Max length is 200 characters <br/>';
+        $errors['message'] = 'The maximum allowed length is 200 characters <br/>';
     }
 
     // a country must be selected
     if (empty($SanitizedResult['country'])) {
-        $errors['country'] = 'A country is required <br/>';
+        $errors['country'] = 'You must select your country <br/>';
     }
 
     // a gender must be selected
     if (empty($SanitizedResult['gender'])) {
-        $errors['gender'] = 'A gender is required <br/>';
+        $errors['gender'] = 'You must select your gender <br/>';
     }
 }
+
 // generate country selector
 $countries = ['BE' => 'Belgium', 'DK' => 'Denmark', 'DE' => 'Germany', 'IE' => 'Ireland', 'GR' => 'Greece', 'ES' => 'Spain', 'FR' => 'France', 'IT' => 'Italy', 'LU' => 'Luxembourg', 'NL' => 'the Netherlands', 'PT' => 'Portugal', 'GB' => 'the United Kingdom'];
 
@@ -153,20 +154,20 @@ function topicSelector($topic)
                     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
                         <!-- first name -->
                         <div class="input-field">
-                            <label for="firstName">First Name</label>
+                            <label for="firstName" class="grey-text text-darken-4">First Name</label>
                             <input type="text" name="firstName" id="firstName" data-length="20" value="<?php echo $SanitizedResult['firstName'] ?? ''; ?>"/>
                             <div class="red-text"><?php echo $errors['firstName']; ?></div>
                         </div>
                         <!-- last name -->
                         <div class="input-field">
-                            <label for="lastName">Last Name</label>
+                            <label for="lastName" class="grey-text text-darken-4">Last Name</label>
                             <input type="text" name="lastName" id="lastName" data-length="20" value="<?php echo $SanitizedResult['lastName'] ?? ''; ?>"/>
                             <div class="red-text"><?php echo $errors['lastName']; ?></div>
                         </div>
                         <!-- email -->
                         <div class="input-field">
-                            <label for="email">Email</label>
-                            <input type="text" name="email" id="email" value="<?php echo $SanitizedResult['email'] ?? ''; ?>"/>
+                            <label for="email" class="grey-text text-darken-4">Email</label>
+                            <input type="email" name="email" id="email" value="<?php echo $SanitizedResult['email'] ?? ''; ?>"/>
                             <div class="red-text"><?php echo $errors['email']; ?></div>
                         </div>
                         <!-- country -->
@@ -174,7 +175,7 @@ function topicSelector($topic)
                             <select name="country" id="country">
                                 <?php countrySelector($countries); ?>
                             </select>
-                            <label>Select your country</label>
+                            <labe class="grey-text text-darken-4"l>Select your country</label>
                             <div class="red-text"><?php echo $errors['country']; ?></div>
                         </div>
                         <!-- gender -->
@@ -182,7 +183,7 @@ function topicSelector($topic)
                             <select name="gender" id="gender">
                                 <?php genderSelector($gender); ?>
                             </select>
-                            <label>Select your gender</label>
+                            <label class="grey-text text-darken-4">Select your gender</label>
                             <div class="red-text"><?php echo $errors['gender']; ?></div>
                         </div>
                         <!-- topic -->
@@ -190,11 +191,11 @@ function topicSelector($topic)
                             <select multiple name="topic[]" id="topic">
                                 <?php topicSelector($topic); ?>
                             </select>
-                            <label>Select your Message Topic</label>
+                            <label class="grey-text text-darken-4">Select your Message Topic</label>
                         </div>
                         <!-- message-->
                         <div class="input-field">
-                            <label for="message">Your Message</label>
+                            <label for="message" class="grey-text text-darken-4">Your Message</label>
                             <textarea
                                 name="message"
                                 class="materialize-textarea"
@@ -208,7 +209,7 @@ function topicSelector($topic)
                         </div>
                         <!-- honeypot -->
                         <div style="display: none;">
-                            <label for="Name">Name</label>
+                            <label for="Name" class="grey-text text-darken-4">Name</label>
                             <input type="text" name="Name" id="Name" value=""/>
                         </div>
                     </form>
@@ -223,7 +224,7 @@ function topicSelector($topic)
             document.addEventListener("DOMContentLoaded", function() {
                 M.AutoInit();
             });
-
+            // init char counters for fields with max length
             var textNeedCount = document.querySelectorAll('#firstName, #lastName, #message');
             M.CharacterCounter.init(textNeedCount);
     </script>
