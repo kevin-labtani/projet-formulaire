@@ -7,6 +7,7 @@ $firstName = $lastName = $email = $message = '';
 $errors = ['firstName' => '', 'lastName' => '', 'email' => '', 'message' => '', 'gender' => '', 'country' => ''];
 
 // regex safety check
+// thanks to stackoverflow for the regex
 $regSafe = '/[\^<,\"@\/\{\}\(\)\*\$%\?=>:\|]+/i';
 $regSafeEmail = '/[\^<,\"\/\{\}\(\)\*\$%\?=>:\|]+/i';
 
@@ -18,7 +19,6 @@ if (isset($_POST['submit'])) {
         'lastName' => FILTER_SANITIZE_STRING,
         'country' => FILTER_SANITIZE_STRING,
         'gender' => FILTER_SANITIZE_STRING,
-        'topic' => FILTER_SANITIZE_STRING,
         'email' => FILTER_SANITIZE_EMAIL,
         'message' => FILTER_SANITIZE_STRING,
     ];
@@ -51,7 +51,7 @@ if (isset($_POST['submit'])) {
         $errors['firstName'] = 'Max length is 20 characters <br/>';
     }
 
-    // sanitized and valid charsa nd max length for name
+    // sanitized and valid chars and max length for name
     if (empty($SanitizedResult['lastName'])) {
         $errors['lastName'] = 'A last name is required <br/>';
     } elseif (preg_match($regSafe, $SanitizedResult['lastName'])) {
@@ -77,10 +77,59 @@ if (isset($_POST['submit'])) {
         $errors['gender'] = 'A gender is required <br/>';
     }
 }
-
 // generate country selector
 $countries = ['BE' => 'Belgium', 'DK' => 'Denmark', 'DE' => 'Germany', 'IE' => 'Ireland', 'GR' => 'Greece', 'ES' => 'Spain', 'FR' => 'France', 'IT' => 'Italy', 'LU' => 'Luxembourg', 'NL' => 'the Netherlands', 'PT' => 'Portugal', 'GB' => 'the United Kingdom'];
 
+function countrySelector($countries)
+{
+    echo'<option value="" disabled selected>Choose your country</option>';
+
+    foreach ($countries as $key => $value) {
+        $selected = '';
+        if (($key == $_POST['country'])) {
+            $selected = 'selected';
+        }
+        echo "<option {$selected} value={$key}>{$value}</option>";
+    }
+}
+
+// generate gender selector
+$gender = ['male' => 'Male', 'female' => 'Female', 'x' => 'X'];
+
+function genderSelector($gender)
+{
+    echo'<option value="" disabled selected>Choose your gender</option>';
+
+    foreach ($gender as $key => $value) {
+        $selected = '';
+        if (($key == $_POST['gender'])) {
+            $selected = 'selected';
+        }
+        echo "<option {$selected} value={$key}>{$value}</option>";
+    }
+}
+
+// generate message topic selector
+$topic = [
+    'cs' => 'I want to contact Customer Support',
+    'sales' => 'I want to contact Sales',
+    'info' => 'I want more information about your company',
+    'suggest' => 'I want to offer a suggestion',
+    'other' => 'I want to contact you for another reason',
+];
+
+function topicSelector($topic)
+{
+    echo'<option value="" disabled selected>Choose your message topic</option>';
+
+    foreach ($topic as $key => $value) {
+        $selected = '';
+        if ((in_array($key, $_POST['topic']))) {
+            $selected = 'selected';
+        }
+        echo "<option {$selected} value={$key}>{$value}</option>";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -123,11 +172,7 @@ $countries = ['BE' => 'Belgium', 'DK' => 'Denmark', 'DE' => 'Germany', 'IE' => '
                         <!-- country -->
                         <div class="input-field">
                             <select name="country" id="country">
-                            <option value="" disabled selected>Choose your country</option>
-                            <?php foreach ($countries as $key => $value) {
-    echo "<option value={$key}>{$value}</option>";
-}
-                            ?>
+                                <?php countrySelector($countries); ?>
                             </select>
                             <label>Select your country</label>
                             <div class="red-text"><?php echo $errors['country']; ?></div>
@@ -135,23 +180,15 @@ $countries = ['BE' => 'Belgium', 'DK' => 'Denmark', 'DE' => 'Germany', 'IE' => '
                         <!-- gender -->
                         <div class="input-field">
                             <select name="gender" id="gender">
-                            <option value="" disabled selected>Choose your gender</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                            <option value="X">X</option>
+                                <?php genderSelector($gender); ?>
                             </select>
                             <label>Select your gender</label>
                             <div class="red-text"><?php echo $errors['gender']; ?></div>
                         </div>
                         <!-- topic -->
                         <div class="input-field">
-                            <select multiple name="topic" id="topic">
-                            <option value="other" disabled selected>Choose your message topic</option>
-                            <option value="cs">I want to contact Customer Support</option>
-                            <option value="sales">I want to contact Sales</option>
-                            <option value="info">I want more information about your company</option>
-                            <option value="suggest">I want to offer a suggestion</option>
-                            <option value="other">I want to contact you for another reason</option>
+                            <select multiple name="topic[]" id="topic">
+                                <?php topicSelector($topic); ?>
                             </select>
                             <label>Select your Message Topic</label>
                         </div>
