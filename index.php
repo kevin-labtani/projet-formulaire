@@ -35,46 +35,49 @@ if (isset($_POST['submit'])) {
 
     // sanitized and validated email
     if (empty($SanitizedResult['email'])) {
-        $errors['email'] = 'An email is required <br/>';
+        $errors['email'] = 'An email is required';
     } elseif (preg_match($regSafeEmail, $SanitizedResult['email'])) {
-        $errors['email'] = 'Please use valid characters <br/>';
+        $errors['email'] = 'Please use valid characters';
     } elseif (!filter_var($SanitizedResult['email'], FILTER_VALIDATE_EMAIL)) {
         $errors['email'] = 'Email must be a valid email address';
+    } else {
+        $SanitizedResult['email'] = filter_var($SanitizedResult['email'], FILTER_VALIDATE_EMAIL);
+        echo $SanitizedResult['email'];
     }
 
     // sanitized and valid chars and max length for name
     if (empty($SanitizedResult['firstName'])) {
-        $errors['firstName'] = 'A first name is required <br/>';
+        $errors['firstName'] = 'A first name is required';
     } elseif (preg_match($regSafe, $SanitizedResult['firstName'])) {
-        $errors['firstName'] = 'Please use valid characters <br/>';
+        $errors['firstName'] = 'Please use valid characters';
     } elseif (strlen($SanitizedResult['firstName']) > 20) {
-        $errors['firstName'] = 'The maximum allowed length is 20 characters <br/>';
+        $errors['firstName'] = 'The maximum allowed length is 20 characters';
     }
 
     // sanitized and valid chars and max length for name
     if (empty($SanitizedResult['lastName'])) {
-        $errors['lastName'] = 'A last name is required <br/>';
+        $errors['lastName'] = 'A last name is required';
     } elseif (preg_match($regSafe, $SanitizedResult['lastName'])) {
-        $errors['lastName'] = 'Please use valid characters <br/>';
+        $errors['lastName'] = 'Please use valid characters';
     } elseif (strlen($SanitizedResult['lastName']) > 20) {
-        $errors['lastName'] = 'The maximum allowed length is 20 characters <br/>';
+        $errors['lastName'] = 'The maximum allowed length is 20 characters';
     }
 
     // sanitized and max length message, do not check for valid chars as messages might legitimately contain some and sanitization should be enough
     if (empty($SanitizedResult['message'])) {
-        $errors['message'] = 'A message is required <br/>';
+        $errors['message'] = 'A message is required';
     } elseif (strlen($SanitizedResult['message']) > 200) {
-        $errors['message'] = 'The maximum allowed length is 200 characters <br/>';
+        $errors['message'] = 'The maximum allowed length is 200 characters';
     }
 
     // a country must be selected
     if (empty($SanitizedResult['country'])) {
-        $errors['country'] = 'You must select your country <br/>';
+        $errors['country'] = 'You must select your country';
     }
 
     // a gender must be selected
     if (empty($SanitizedResult['gender'])) {
-        $errors['gender'] = 'You must select your gender <br/>';
+        $errors['gender'] = 'You must select your gender';
     }
 }
 
@@ -155,19 +158,19 @@ function topicSelector($topic)
                         <!-- first name -->
                         <div class="input-field">
                             <label for="firstName" class="grey-text text-darken-4">First Name</label>
-                            <input type="text" name="firstName" id="firstName" data-length="20" value="<?php echo $SanitizedResult['firstName'] ?? ''; ?>"/>
+                            <input type="text" name="firstName" id="firstName" required data-length="20" value="<?php echo $SanitizedResult['firstName'] ?? ''; ?>"/>
                             <div class="red-text"><?php echo $errors['firstName']; ?></div>
                         </div>
                         <!-- last name -->
                         <div class="input-field">
                             <label for="lastName" class="grey-text text-darken-4">Last Name</label>
-                            <input type="text" name="lastName" id="lastName" data-length="20" value="<?php echo $SanitizedResult['lastName'] ?? ''; ?>"/>
+                            <input type="text" name="lastName" id="lastName" data-length="20" required value="<?php echo $SanitizedResult['lastName'] ?? ''; ?>"/>
                             <div class="red-text"><?php echo $errors['lastName']; ?></div>
                         </div>
                         <!-- email -->
                         <div class="input-field">
                             <label for="email" class="grey-text text-darken-4">Email</label>
-                            <input type="email" name="email" id="email" value="<?php echo $SanitizedResult['email'] ?? ''; ?>"/>
+                            <input type="email" name="email" id="email" required value="<?php echo $SanitizedResult['email'] ?? ''; ?>"/>
                             <div class="red-text"><?php echo $errors['email']; ?></div>
                         </div>
                         <!-- country -->
@@ -175,7 +178,7 @@ function topicSelector($topic)
                             <select name="country" id="country">
                                 <?php countrySelector($countries); ?>
                             </select>
-                            <labe class="grey-text text-darken-4"l>Select your country</label>
+                            <label class="grey-text text-darken-4"l>Select your country</label>
                             <div class="red-text"><?php echo $errors['country']; ?></div>
                         </div>
                         <!-- gender -->
@@ -201,6 +204,7 @@ function topicSelector($topic)
                                 class="materialize-textarea"
                                 id="message"
                                 data-length="200"
+                                required
                             ><?php echo $SanitizedResult['message'] ?? ''; ?></textarea>
                             <div class="red-text"><?php echo $errors['message']; ?></div>
                         </div>
@@ -219,6 +223,7 @@ function topicSelector($topic)
 
         <!--JavaScript at end of body for optimized loading-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="assets/js/validate.js"></script>
         <script>
             // init materialize js stuff
             document.addEventListener("DOMContentLoaded", function() {
