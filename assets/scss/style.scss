@@ -53,11 +53,24 @@ main {
   }
   section{
     height: 100vh;
+    width: 100%;
    .cardproduct{
      margin-left: 15vw;
    }
     .card {
-      margin: 5px;
+      margin: 15px;
+     height: 300px; 
+     width:400px;
+
+      &:hover{
+        transform: scale(1.1);
+        opacity: .8;
+        
+      }
+      .card-title{
+        font-size: 20px;
+        
+      }
     }
   }
 
