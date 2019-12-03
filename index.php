@@ -50,7 +50,7 @@ if (isset($_POST['submit'])) {
         $errors['firstName'] = 'A first name is required';
     } elseif (preg_match($regSafe, $SanitizedResult['firstName'])) {
         $errors['firstName'] = 'Please use valid characters';
-    } elseif (strlen($SanitizedResult['firstName']) > 20) {
+    } elseif (strlen($_POST['firstName']) > 20) {
         $errors['firstName'] = 'The maximum allowed length is 20 characters';
     }
 
@@ -59,14 +59,14 @@ if (isset($_POST['submit'])) {
         $errors['lastName'] = 'A last name is required';
     } elseif (preg_match($regSafe, $SanitizedResult['lastName'])) {
         $errors['lastName'] = 'Please use valid characters';
-    } elseif (strlen($SanitizedResult['lastName']) > 20) {
+    } elseif (strlen($_POST['lastName']) > 20) {
         $errors['lastName'] = 'The maximum allowed length is 20 characters';
     }
 
     // sanitized and max length message, do not check for valid chars as messages might legitimately contain some and sanitization should be enough
     if (empty($SanitizedResult['message'])) {
         $errors['message'] = 'A message is required';
-    } elseif (strlen($SanitizedResult['message']) > 200) {
+    } elseif (strlen($_POST['message']) > 200) {
         $errors['message'] = 'The maximum allowed length is 200 characters';
     }
 
@@ -164,7 +164,7 @@ function topicSelector($topic)
                         <!-- first name -->
                         <div class="input-field">
                             <label for="firstName" class="grey-text text-darken-4">First Name</label>
-                            <input type="text" name="firstName" id="firstName" required data-length="20" value="<?php echo $SanitizedResult['firstName'] ?? ''; ?>"/>
+                            <input type="text" name="firstName" id="firstName"  required data-length="20" value="<?php echo $SanitizedResult['firstName'] ?? ''; ?>"/>
                             <div class="red-text"><?php echo $errors['firstName']; ?></div>
                         </div>
                         <!-- last name -->
