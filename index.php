@@ -37,19 +37,18 @@ if (isset($_POST['submit'])) {
     if (empty($SanitizedResult['email'])) {
         $errors['email'] = 'An email is required';
     } elseif (preg_match($regSafeEmail, $SanitizedResult['email'])) {
-        $errors['email'] = 'Please use valid characters';
+        $errors['email'] = 'Please use valid characters only';
     } elseif (!filter_var($SanitizedResult['email'], FILTER_VALIDATE_EMAIL)) {
         $errors['email'] = 'Email must be a valid email address';
     } else {
         $SanitizedResult['email'] = filter_var($SanitizedResult['email'], FILTER_VALIDATE_EMAIL);
-        echo $SanitizedResult['email'];
     }
 
     // sanitized and valid chars and max length for name
     if (empty($SanitizedResult['firstName'])) {
         $errors['firstName'] = 'A first name is required';
     } elseif (preg_match($regSafe, $SanitizedResult['firstName'])) {
-        $errors['firstName'] = 'Please use valid characters';
+        $errors['firstName'] = 'Please use valid characters only';
     } elseif (strlen($_POST['firstName']) > 20) {
         $errors['firstName'] = 'The maximum allowed length is 20 characters';
     }
@@ -58,7 +57,7 @@ if (isset($_POST['submit'])) {
     if (empty($SanitizedResult['lastName'])) {
         $errors['lastName'] = 'A last name is required';
     } elseif (preg_match($regSafe, $SanitizedResult['lastName'])) {
-        $errors['lastName'] = 'Please use valid characters';
+        $errors['lastName'] = 'Please use valid characters only';
     } elseif (strlen($_POST['lastName']) > 20) {
         $errors['lastName'] = 'The maximum allowed length is 20 characters';
     }
@@ -164,20 +163,20 @@ function topicSelector($topic)
                         <!-- first name -->
                         <div class="input-field">
                             <label for="firstName" class="grey-text text-darken-4">First Name</label>
-                            <input type="text" name="firstName" id="firstName"  required data-length="20" value="<?php echo $SanitizedResult['firstName'] ?? ''; ?>"/>
-                            <div class="red-text"><?php echo $errors['firstName']; ?></div>
+                            <input type="text" name="firstName" id="firstName" class="validate" required data-length="20" value="<?php echo $SanitizedResult['firstName'] ?? ''; ?>"/>
+                            <div class="red-text fn-error"><?php echo $errors['firstName']; ?></div>
                         </div>
                         <!-- last name -->
                         <div class="input-field">
                             <label for="lastName" class="grey-text text-darken-4">Last Name</label>
-                            <input type="text" name="lastName" id="lastName" data-length="20" required value="<?php echo $SanitizedResult['lastName'] ?? ''; ?>"/>
-                            <div class="red-text"><?php echo $errors['lastName']; ?></div>
+                            <input type="text" name="lastName" id="lastName" class="validate" data-length="20" required value="<?php echo $SanitizedResult['lastName'] ?? ''; ?>"/>
+                            <div class="red-text ln-error"><?php echo $errors['lastName']; ?></div>
                         </div>
                         <!-- email -->
                         <div class="input-field">
                             <label for="email" class="grey-text text-darken-4">Email</label>
-                            <input type="email" name="email" id="email" required value="<?php echo $SanitizedResult['email'] ?? ''; ?>"/>
-                            <div class="red-text"><?php echo $errors['email']; ?></div>
+                            <input type="email" name="email" id="email" class="validate" required value="<?php echo $SanitizedResult['email'] ?? ''; ?>"/>
+                            <div class="red-text email-error"><?php echo $errors['email']; ?></div>
                         </div>
                         <!-- country -->
                         <div class="input-field">
@@ -209,6 +208,7 @@ function topicSelector($topic)
                                 name="message"
                                 class="materialize-textarea"
                                 id="message"
+                                class="validate"
                                 data-length="200"
                                 required
                             ><?php echo $SanitizedResult['message'] ?? ''; ?></textarea>

@@ -3,10 +3,13 @@
 const regSafe = /[\^<,\"@\/\{\}\(\)\*\$%\?=>:\|]+/i;
 const regSafeEmail = /[\^<,\"\/\{\}\(\)\*\$%\?=>:\|]+/i;
 
+// validate first name and toggle red underline based on status
 const validateFirstName = () => {
-  const firstName = document.getElementById("firstName");
+  const firstName = document.querySelector("#firstName");
+  const errorText = document.querySelector(".fn-error");
   if (regSafe.test(firstName.value)) {
     firstName.classList.add("invalid");
+    errorText.textContent = "Please use valid characters only";
   } else {
     if (firstName.value.length < 20) {
       firstName.classList.remove("invalid");
@@ -14,10 +17,13 @@ const validateFirstName = () => {
   }
 };
 
+// validate last name and toggle red underline based on status
 const validateLastName = () => {
-  const lastName = document.getElementById("lastName");
+  const lastName = document.querySelector("#lastName");
+  const errorText = document.querySelector(".ln-error");
   if (regSafe.test(lastName.value)) {
     lastName.classList.add("invalid");
+    errorText.textContent = "Please use valid characters only";
   } else {
     if (lastName.value.length < 20) {
       lastName.classList.remove("invalid");
@@ -25,10 +31,14 @@ const validateLastName = () => {
   }
 };
 
+// validate email and toggle red underline based on status
 const validateEmail = () => {
-  const email = document.getElementById("email");
+  const email = document.querySelector("#email");
+  const errorText = document.querySelector(".email-error");
+
   if (regSafeEmail.test(email.value)) {
     email.classList.add("invalid");
+    errorText.textContent = "Please use valid characters only";
   } else {
     email.classList.remove("invalid");
   }
