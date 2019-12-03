@@ -208,7 +208,6 @@ function topicSelector($topic)
                                 name="message"
                                 class="materialize-textarea"
                                 id="message"
-                                class="validate"
                                 data-length="200"
                                 required
                             ><?php echo $SanitizedResult['message'] ?? ''; ?></textarea>
