@@ -1,6 +1,6 @@
 # Hackers Poulette
 
-![Aperçu du projet - capture d’écran](assets/img/???)
+![Aperçu du projet - capture d’écran](./assets/img/hp-sreenshot.png)
 
 ## Présentation du Projet
 
