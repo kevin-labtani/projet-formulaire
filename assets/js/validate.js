@@ -34,6 +34,9 @@ const validateLastName = () => {
 };
 
 // validate email and toggle red underline based on status
+// https://en.wikipedia.org/wiki/Email_address#Local-part
+// validating email address is tricky...
+// just because things are allowed in the standard doesn't mean that the big email providers allow them....
 const validateEmail = () => {
   const email = document.querySelector("#email");
   const errorText = document.querySelector(".email-error");
