@@ -9038,8 +9038,8 @@ header .sidenav a {
   color: white;
   -webkit-transition: color;
   transition: color;
-  -webkit-transition-duration: .5s;
-          transition-duration: .5s;
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
 }
 
 header .sidenav a:hover {
@@ -9074,9 +9074,13 @@ main section .card {
 main section .card:hover {
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
-  opacity: .8;
+  opacity: 0.8;
 }
 
 main section .card .card-title {
   font-size: 20px;
+}
+
+.footer-copyright {
+  background-color: #303030 !important;
 }

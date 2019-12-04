@@ -16,63 +16,61 @@ $font-stack: Bellota, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
 // custom style
 html {
   font-family: bellota;
- 
-
 }
 
-// header content 
+// header content
 
-header{
-  section{
+header {
+  section {
     text-align: center;
   }
-  .sidenav{
+  .sidenav {
     background-color: $secondary-color;
     text-align: center;
-  a{
-    color: white;
-    transition: color;
-    transition-duration: .5s;
-    &:hover{
-      color: $primary-color;
+    a {
+      color: white;
+      transition: color;
+      transition-duration: 0.5s;
+      &:hover {
+        color: $primary-color;
+      }
     }
   }
-}
- section{
-   height: 100vh;
-   background-image: url("../img/bgheader.jpg");
-   background-size: cover;
+  section {
+    height: 100vh;
+    background-image: url("../img/bgheader.jpg");
+    background-size: cover;
   }
 }
 // main content
-  
+
 main {
-  
   h2 {
     text-align: center;
   }
-  section{
+  section {
     height: 100vh;
     width: 100%;
-   .cardproduct{
-     margin-left: 15vw;
-   }
+    .cardproduct {
+      margin-left: 15vw;
+    }
     .card {
       margin: 15px;
-     height: 300px; 
-     width:400px;
+      height: 300px;
+      width: 400px;
 
-      &:hover{
+      &:hover {
         transform: scale(1.1);
-        opacity: .8;
-        
+        opacity: 0.8;
       }
-      .card-title{
+      .card-title {
         font-size: 20px;
-        
       }
     }
   }
-
 }
 
+// footer
+.footer-copyright {
+  background-color: $secondary-color !important;
+}

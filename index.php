@@ -176,7 +176,7 @@ function topicSelector($topic)
         </header>
         <!-- MAIN -->        
         <main>
-                <!-- SECTION OUR PORDUCTS -->   
+            <!-- SECTION OUR PORDUCTS -->   
             <section class="section container">
                 <div class="row cardproduct">
                     <h2 class=" col s12" id="product">Our products</h2>
@@ -291,12 +291,9 @@ function topicSelector($topic)
                     <div id="card-panel-3">
 
                         <div class="card  col l3 m5 s12">
-                     <!-- parallax 2 -->
-            <div class="parallax-container">
-                <div class="parallax">
-                    <img src="./assets/img/parallax2.jpg" alt="decorative raspberry pi image" class="responsive-img" />
-                </div>
-            </div>                   </div>
+                            <div class="card-image waves-effect waves-block waves-light">
+                                <img class="activator" src="./assets/img/powersupply.jpg" alt="Power supply for Rasberry pi">
+                            </div>
                             <div class="card-content">
                                 <span class="card-title activator grey-text text-darken-4">Power Supply<i class="material-icons right">more_vert</i></span>
                             </div>
@@ -340,86 +337,86 @@ function topicSelector($topic)
                     </div>
                 </div>
             </section>
-        <!-- parallax -->
-            <div class="parallax-container">
-            <div class="parallax">
-                <img src="./assets/img/parallax.jpg" alt="decorative raspberry pi image" class="responsive-img" />
-            </div>
-            </div>
-        <!-- CONTACT FORM -->
-        <div class="container section">
-            <h2 class="center-align" id="contact">Contact Us</h2>
-            <div class="row">
-                <div class="col s12 m6 offset-m3">
-                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-                        <!-- first name -->
-                        <div class="input-field">
-                            <label for="firstName" class="grey-text text-darken-4">First Name</label>
-                            <input type="text" name="firstName" id="firstName" class="validate" required data-length="20" value="<?php echo $SanitizedResult['firstName'] ?? ''; ?>"/>
-                            <div class="red-text fn-error"><?php echo $errors['firstName']; ?></div>
-                        </div>
-                        <!-- last name -->
-                        <div class="input-field">
-                            <label for="lastName" class="grey-text text-darken-4">Last Name</label>
-                            <input type="text" name="lastName" id="lastName" class="validate" data-length="20" required value="<?php echo $SanitizedResult['lastName'] ?? ''; ?>"/>
-                            <div class="red-text ln-error"><?php echo $errors['lastName']; ?></div>
-                        </div>
-                        <!-- email -->
-                        <div class="input-field">
-                            <label for="email" class="grey-text text-darken-4">Email</label>
-                            <input type="email" name="email" id="email" class="validate" required value="<?php echo $SanitizedResult['email'] ?? ''; ?>"/>
-                            <div class="red-text email-error"><?php echo $errors['email']; ?></div>
-                        </div>
-                        <!-- country -->
-                        <div class="input-field">
-                            <select name="country" id="country">
-                                <?php countrySelector($countries); ?>
-                            </select>
-                            <label class="grey-text text-darken-4">Select your country</label>
-                            <div class="red-text"><?php echo $errors['country']; ?></div>
-                        </div>
-                        <!-- gender -->
-                        <div class="input-field">
-                            <select name="gender" id="gender">
-                                <?php genderSelector($gender); ?>
-                            </select>
-                            <label class="grey-text text-darken-4">Select your gender</label>
-                            <div class="red-text"><?php echo $errors['gender']; ?></div>
-                   <!-- parallax 2 -->
+
+            <!-- parallax -->
             <div class="parallax-container">
                 <div class="parallax">
-                    <img src="./assets/img/parallax2.jpg" alt="decorative raspberry pi image" class="responsive-img" />
-                </div>
-            </div>                 <div class="input-field">
-                            <select multiple name="topic[]" id="topic">
-                                <?php topicSelector($topic); ?>
-                            </select>
-                            <label class="grey-text text-darken-4">Select your Message Topic</label>
-                        </div>
-                        <!-- message-->
-                        <div class="input-field">
-                            <label for="message" class="grey-text text-darken-4">Your Message</label>
-                            <textarea
-                                name="message"
-                                class="materialize-textarea"
-                                id="message"
-                                data-length="200"
-                                required
-                            ><?php echo $SanitizedResult['message'] ?? ''; ?></textarea>
-                            <div class="red-text"><?php echo $errors['message']; ?></div>
-                        </div>
-                        <div class="input-field center">
-                            <button class="btn-large waves-effect waves-light" type="submit" name="submit" value="submit">Submit</button>
-                        </div>
-                        <!-- honeypot -->
-                        <div style="display: none;">
-                            <label for="Name" class="grey-text text-darken-4">Name</label>
-                            <input type="text" name="Name" id="Name" value=""/>
-                        </div>
-                    </form>
+                    <img src="./assets/img/parallax.jpg" alt="decorative raspberry pi image" class="responsive-img" />
                 </div>
             </div>
-        </div>
+
+            <!-- CONTACT FORM (must be in a div!)-->
+            <div class="container section">
+                <h2 class="center-align" id="contact">Contact Us</h2>
+                <div class="row">
+                    <div class="col s12 m6 offset-m3">
+                        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+                            <!-- first name -->
+                            <div class="input-field">
+                                <label for="firstName" class="grey-text text-darken-4">First Name</label>
+                                <input type="text" name="firstName" id="firstName" class="validate" required data-length="20" value="<?php echo $SanitizedResult['firstName'] ?? ''; ?>"/>
+                                <div class="red-text fn-error"><?php echo $errors['firstName']; ?></div>
+                            </div>
+                            <!-- last name -->
+                            <div class="input-field">
+                                <label for="lastName" class="grey-text text-darken-4">Last Name</label>
+                                <input type="text" name="lastName" id="lastName" class="validate" data-length="20" required value="<?php echo $SanitizedResult['lastName'] ?? ''; ?>"/>
+                                <div class="red-text ln-error"><?php echo $errors['lastName']; ?></div>
+                            </div>
+                            <!-- email -->
+                            <div class="input-field">
+                                <label for="email" class="grey-text text-darken-4">Email</label>
+                                <input type="email" name="email" id="email" class="validate" required value="<?php echo $SanitizedResult['email'] ?? ''; ?>"/>
+                                <div class="red-text email-error"><?php echo $errors['email']; ?></div>
+                            </div>
+                            <!-- country -->
+                            <div class="input-field">
+                                <select name="country" id="country">
+                                    <?php countrySelector($countries); ?>
+                                </select>
+                                <label class="grey-text text-darken-4">Select your country</label>
+                                <div class="red-text"><?php echo $errors['country']; ?></div>
+                            </div>
+                            <!-- gender -->
+                            <div class="input-field">
+                                <select name="gender" id="gender">
+                                    <?php genderSelector($gender); ?>
+                                </select>
+                                <label class="grey-text text-darken-4">Select your gender</label>
+                                <div class="red-text"><?php echo $errors['gender']; ?></div>
+                            </div>
+                            <!-- topic -->
+                            <div class="input-field">
+                                <select multiple name="topic[]" id="topic">
+                                    <?php topicSelector($topic); ?>
+                                </select>
+                                <label class="grey-text text-darken-4">Select your Message Topic</label>
+                            </div>
+                            <!-- message-->
+                            <div class="input-field">
+                                <label for="message" class="grey-text text-darken-4">Your Message</label>
+                                <textarea
+                                    name="message"
+                                    class="materialize-textarea"
+                                    id="message"
+                                    data-length="200"
+                                    required
+                                ><?php echo $SanitizedResult['message'] ?? ''; ?></textarea>
+                                <div class="red-text"><?php echo $errors['message']; ?></div>
+                            </div>
+                            <div class="input-field center">
+                                <button class="btn-large waves-effect waves-light" type="submit" name="submit" value="submit">Submit</button>
+                            </div>
+                            <!-- honeypot -->
+                            <div style="display: none;">
+                                <label for="Name" class="grey-text text-darken-4">Name</label>
+                                <input type="text" name="Name" id="Name" value=""/>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
             <!-- parallax 2 -->
             <div class="parallax-container">
                 <div class="parallax">
@@ -427,9 +424,31 @@ function topicSelector($topic)
                 </div>
             </div>
         </main>
-        <!-- FOOTER -->   
-        <footer>
-
+        <!-- footer -->
+        <footer class="page-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5 class="white-text">Hackers Poulette</h5>
+                        <p class="grey-text text-lighten-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. A, ex ab? Porro ipsum alias, minima ut quod quae quibusdam nam, amet non, molestias omnis.</p>
+                    </div>
+                    <div class="col l4 offset-l2 s12">
+                        <h5 class="white-text">Connect with Us</h5>
+                        <ul>
+                        <li><a class="grey-text text-lighten-3" href="#!">Facebook</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Instagram</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Youtube</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Twitter</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <div class="container">
+                    © 2019 Hackers Poulette
+                    <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+                </div>
+            </div>
         </footer>
         <!--JavaScript at end of body for optimized loading-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
