@@ -291,9 +291,12 @@ function topicSelector($topic)
                     <div id="card-panel-3">
 
                         <div class="card  col l3 m5 s12">
-                            <div class="card-image waves-effect waves-block waves-light">
-                                <img class="activator" src="./assets/img/powersupply.jpg" alt="Power supply for Rasberry pi">
-                            </div>
+                     <!-- parallax 2 -->
+            <div class="parallax-container">
+                <div class="parallax">
+                    <img src="./assets/img/parallax2.jpg" alt="decorative raspberry pi image" class="responsive-img" />
+                </div>
+            </div>                   </div>
                             <div class="card-content">
                                 <span class="card-title activator grey-text text-darken-4">Power Supply<i class="material-icons right">more_vert</i></span>
                             </div>
@@ -337,9 +340,15 @@ function topicSelector($topic)
                     </div>
                 </div>
             </section>
-                    <!-- CONTACT FORM -->
-        <section class="container section">
-            <h2 class="center-align">Contact Us</h2>
+        <!-- parallax -->
+            <div class="parallax-container">
+            <div class="parallax">
+                <img src="./assets/img/parallax.jpg" alt="decorative raspberry pi image" class="responsive-img" />
+            </div>
+            </div>
+        <!-- CONTACT FORM -->
+        <div class="container section">
+            <h2 class="center-align" id="contact">Contact Us</h2>
             <div class="row">
                 <div class="col s12 m6 offset-m3">
                     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
@@ -376,9 +385,12 @@ function topicSelector($topic)
                             </select>
                             <label class="grey-text text-darken-4">Select your gender</label>
                             <div class="red-text"><?php echo $errors['gender']; ?></div>
-                        </div>
-                        <!-- topic -->
-                        <div class="input-field">
+                   <!-- parallax 2 -->
+            <div class="parallax-container">
+                <div class="parallax">
+                    <img src="./assets/img/parallax2.jpg" alt="decorative raspberry pi image" class="responsive-img" />
+                </div>
+            </div>                 <div class="input-field">
                             <select multiple name="topic[]" id="topic">
                                 <?php topicSelector($topic); ?>
                             </select>
@@ -407,7 +419,13 @@ function topicSelector($topic)
                     </form>
                 </div>
             </div>
-        </section>
+        </div>
+            <!-- parallax 2 -->
+            <div class="parallax-container">
+                <div class="parallax">
+                    <img src="./assets/img/parallax2.jpg" alt="decorative raspberry pi image" class="responsive-img" />
+                </div>
+            </div>
         </main>
         <!-- FOOTER -->   
         <footer>
