@@ -160,15 +160,15 @@ function topicSelector($topic)
                     <a href="#" class="brand-logo center">Hacker Poulette</a>
                     <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                     <ul id="nav-mobile" class="left hide-on-med-and-down">
-                        <li><a href="#product">Nos produits</a></li>
-                        <li><a href="#contact">Nous contacter</a></li>
+                        <li><a href="#product">Our Products</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
                     </ul>
                 </div>
             </nav>
             <ul class="sidenav" id="mobile-demo">
                 <img  class="responsive-img" src="./assets/img/logohp.png" alt="Logo of Hacker Poulette">
-                <li><a href="#product">Our product</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#product">Our products</a></li>
+                <li><a href="#contact">Contact Us</a></li>
             </ul>
             <section class="row">
                 <img  class="responsive-img" src="./assets/img/logohp.png" alt="Logo of Hacker Poulette">
@@ -444,9 +444,8 @@ function topicSelector($topic)
                 </div>
             </div>
             <div class="footer-copyright">
-                <div class="container">
+                <div class="container center-align">
                     © 2019 Hackers Poulette
-                    <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
                 </div>
             </div>
         </footer>
