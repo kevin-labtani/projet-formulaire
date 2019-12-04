@@ -9024,3 +9024,59 @@ input[type=range]::-ms-thumb {
 html {
   font-family: bellota;
 }
+
+header section {
+  text-align: center;
+}
+
+header .sidenav {
+  background-color: #303030;
+  text-align: center;
+}
+
+header .sidenav a {
+  color: white;
+  -webkit-transition: color;
+  transition: color;
+  -webkit-transition-duration: .5s;
+          transition-duration: .5s;
+}
+
+header .sidenav a:hover {
+  color: #15c5bd;
+}
+
+header section {
+  height: 100vh;
+  background-image: url("../img/bgheader.jpg");
+  background-size: cover;
+}
+
+main h2 {
+  text-align: center;
+}
+
+main section {
+  height: 100vh;
+  width: 100%;
+}
+
+main section .cardproduct {
+  margin-left: 15vw;
+}
+
+main section .card {
+  margin: 15px;
+  height: 300px;
+  width: 400px;
+}
+
+main section .card:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  opacity: .8;
+}
+
+main section .card .card-title {
+  font-size: 20px;
+}

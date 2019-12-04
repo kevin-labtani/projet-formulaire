@@ -16,4 +16,63 @@ $font-stack: Bellota, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
 // custom style
 html {
   font-family: bellota;
+ 
+
 }
+
+// header content 
+
+header{
+  section{
+    text-align: center;
+  }
+  .sidenav{
+    background-color: $secondary-color;
+    text-align: center;
+  a{
+    color: white;
+    transition: color;
+    transition-duration: .5s;
+    &:hover{
+      color: $primary-color;
+    }
+  }
+}
+ section{
+   height: 100vh;
+   background-image: url("../img/bgheader.jpg");
+   background-size: cover;
+  }
+}
+// main content
+  
+main {
+  
+  h2 {
+    text-align: center;
+  }
+  section{
+    height: 100vh;
+    width: 100%;
+   .cardproduct{
+     margin-left: 15vw;
+   }
+    .card {
+      margin: 15px;
+     height: 300px; 
+     width:400px;
+
+      &:hover{
+        transform: scale(1.1);
+        opacity: .8;
+        
+      }
+      .card-title{
+        font-size: 20px;
+        
+      }
+    }
+  }
+
+}
+
