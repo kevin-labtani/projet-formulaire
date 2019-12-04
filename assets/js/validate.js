@@ -13,6 +13,7 @@ const validateFirstName = () => {
   } else {
     if (firstName.value.length < 20) {
       firstName.classList.remove("invalid");
+      errorText.textContent = "";
     }
   }
 };
@@ -27,6 +28,7 @@ const validateLastName = () => {
   } else {
     if (lastName.value.length < 20) {
       lastName.classList.remove("invalid");
+      errorText.textContent = "";
     }
   }
 };
@@ -41,6 +43,7 @@ const validateEmail = () => {
     errorText.textContent = "Please use valid characters only";
   } else {
     email.classList.remove("invalid");
+    errorText.textContent = "";
   }
 };
 
