@@ -11,9 +11,9 @@ const validateFirstName = () => {
     firstName.classList.add("invalid");
     errorText.textContent = "Please use valid characters only";
   } else {
+    errorText.textContent = "";
     if (firstName.value.length < 20) {
       firstName.classList.remove("invalid");
-      errorText.textContent = "";
     }
   }
 };
@@ -26,9 +26,9 @@ const validateLastName = () => {
     lastName.classList.add("invalid");
     errorText.textContent = "Please use valid characters only";
   } else {
+    errorText.textContent = "";
     if (lastName.value.length < 20) {
       lastName.classList.remove("invalid");
-      errorText.textContent = "";
     }
   }
 };
@@ -42,8 +42,8 @@ const validateEmail = () => {
     email.classList.add("invalid");
     errorText.textContent = "Please use valid characters only";
   } else {
-    email.classList.remove("invalid");
     errorText.textContent = "";
+    email.classList.remove("invalid");
   }
 };
 
