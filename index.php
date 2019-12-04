@@ -150,6 +150,7 @@ function topicSelector($topic)
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!--Import materialize.css-->
         <link rel="stylesheet" href="./assets/css/style.css" />
+        <meta name="Description" content="Hackers Poulette landing page">
         <title>Hackers Poulette</title>
     </head>
     <body>
