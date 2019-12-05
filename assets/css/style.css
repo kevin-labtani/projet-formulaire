@@ -9056,31 +9056,54 @@ main h2 {
   text-align: center;
 }
 
-main section {
-  height: 100vh;
-  width: 100%;
+main .product {
+  height: 110vh;
 }
 
-main section .cardproduct {
-  margin-left: 15vw;
+main .product .cardproduct {
+  margin: auto;
 }
 
-main section .card {
-  margin: 15px;
-  height: 300px;
-  width: 400px;
+main .product .card:hover {
+  opacity: .8;
 }
 
-main section .card:hover {
-  -webkit-transform: scale(1.1);
-          transform: scale(1.1);
-  opacity: 0.8;
-}
-
-main section .card .card-title {
+main .product .card .card-title {
   font-size: 20px;
 }
 
-.footer-copyright {
+main .parallax-container {
+  height: 70vh;
+}
+
+main .parallax-container h2 {
+  color: white;
+}
+
+.page-footer {
+  margin-top: 50px;
+}
+
+.page-footer img {
+  margin: auto;
+  width: 40px;
+  height: 40px;
+}
+
+.page-footer .flex-footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+  margin-top: 30px;
+}
+
+.page-footer .flex-footer a {
+  padding: 10px;
+}
+
+.page-footer .footer-copyright {
   background-color: #303030 !important;
 }
