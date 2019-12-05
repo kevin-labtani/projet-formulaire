@@ -93,9 +93,9 @@ if (isset($_POST['submit'])) {
                         .'Message: '.$SanitizedResult['message'];
     //  !array_filter use to check if the errors arrey is empty
     if (empty($honeypot) and !array_filter($errors)) {
-        //header('Location: index.php#contact'); Probleme, les chmap se vident plus voir si le tab est vide
-        $submit_message = 'Thank you for your submission, an email has been send to our team!';
         mail($mail_to, $subject_mail, $content_mail);
+        $submit_message = 'Thank you for your submission, an email has been send to our team!';
+        $SanitizedResult['firstName'] = $SanitizedResult['lastName'] = $SanitizedResult['email'] = $SanitizedResult['message'] = $_POST['topic'] = '';
     }
 }
 
@@ -449,9 +449,7 @@ function topicSelector($topic)
                         </div>
                     </form>
                     <div>
-                        <p><?php if (isset($_POST['submit'])) {
-    echo $submit_message;
-}?></p>
+                        <p><?php echo $submit_message; ?></p>
                     </div>
                 </div>
             </div>
