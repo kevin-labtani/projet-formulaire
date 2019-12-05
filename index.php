@@ -139,7 +139,7 @@ $submit_message = 'Thanks to enter validate informations.';
 $honeypot = $_POST['Name'];
 //informations to put inside the email
 $mail_to = 'loiclissens@gmail.com';
-$subject_mail = 'Subject: '.implode(',', $_POST['topic']); // je réussis a recuperer que le clés
+$subject_mail = 'Subject: '.implode(',', $_POST['topic']);
 $content_mail = 'From: '.$SanitizedResult['fistName'].' '.$SanitizedResult['lastName']."\n"
                         .'Live in: '.$SanitizedResult['country']."\n"
                         .'Gender: '.$SanitizedResult['gender']."\n"
@@ -148,7 +148,7 @@ $content_mail = 'From: '.$SanitizedResult['fistName'].' '.$SanitizedResult['last
     //function sending
 if (isset($_POST['submit'])) {
     if (empty($honeypot)) {
-        //header('Location: index.php#contact'); Probleme, les chmap se vident plus voir si le tab est vide ?
+        //header('Location: index.php#contact'); Probleme, les chmap se vident plus voir si le tab est vide
         $submit_message = 'Thank for your submition, an email has been send !';
         mail($mail_to, $subject_mail, $content_mail);
     }
@@ -165,8 +165,7 @@ if (isset($_POST['submit'])) {
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!--Import materialize.css-->
         <link rel="stylesheet" href="./assets/css/style.css" />
-        <link rel="shortcut icon" type="image/png" href="assets/img/logohp.ico"/>
-        <meta name="Description" content="Hackers Poulette landing page">
+        <link rel="shortcut icon" type="image/png" href="assets/img/favicon.ico"/>
         <title>Hackers Poulette</title>
     </head>
     <body>
