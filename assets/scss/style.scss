@@ -48,16 +48,15 @@ main {
   h2 {
     text-align: center;
   }
-  .product{
+  .product {
     height: 110vh;
-    
-    .cardproduct{
-      margin:auto;
+
+    .cardproduct {
+      margin: auto;
     }
     .card {
-     &:hover{
-       opacity: .8;
-        
+      &:hover {
+        opacity: 0.8;
       }
       .card-title {
         font-size: 20px;
@@ -66,32 +65,29 @@ main {
   }
   .parallax-container {
     height: 70vh;
-    h2{
+    h2 {
       color: white;
-    } 
+    }
   }
-
 }
 // Footer
 
-.page-footer{
+.page-footer {
   margin-top: 50px;
-  img{
+  img {
     margin: auto;
     width: 40px;
     height: 40px;
-   
   }
   .flex-footer {
     display: flex;
     justify-content: left;
     margin-top: 30px;
-    a{
+    a {
       padding: 10px;
     }
-    
   }
-  .footer-copyright{
+  .footer-copyright {
     background-color: $secondary-color !important;
   }
 }

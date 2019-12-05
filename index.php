@@ -91,11 +91,11 @@ if (isset($_POST['submit'])) {
                         .'Gender: '.$SanitizedResult['gender']."\n"
                         .'Email: '.$SanitizedResult['email']."\n"
                         .'Message: '.$SanitizedResult['message'];
-    //  !array_filter use to check if the errors arrey is empty
+    //  !array_filter use to check if the errors array is empty
     if (empty($honeypot) and !array_filter($errors)) {
         mail($mail_to, $subject_mail, $content_mail);
         $submit_message = 'Thank you for your submission, an email has been send to our team!';
-        $SanitizedResult['firstName'] = $SanitizedResult['lastName'] = $SanitizedResult['email'] = $SanitizedResult['message'] = $_POST['topic'] = '';
+        $SanitizedResult['firstName'] = $SanitizedResult['lastName'] = $SanitizedResult['email'] = $SanitizedResult['message'] = $_POST['topic'] = $_POST['country'] = $_POST['gender'] = '';
     }
 }
 
@@ -167,7 +167,7 @@ function topicSelector($topic)
         <title>Hackers Poulette</title>
     </head>
     <body>
-             <!-- HEADER -->   
+        <!-- HEADER -->   
         <header>
             <nav>
                 <div class="nav-wrapper">

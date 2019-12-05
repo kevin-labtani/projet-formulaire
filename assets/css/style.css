@@ -9065,7 +9065,7 @@ main .product .cardproduct {
 }
 
 main .product .card:hover {
-  opacity: .8;
+  opacity: 0.8;
 }
 
 main .product .card .card-title {
