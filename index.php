@@ -166,6 +166,7 @@ if (isset($_POST['submit'])) {
         <!--Import materialize.css-->
         <link rel="stylesheet" href="./assets/css/style.css" />
         <link rel="shortcut icon" type="image/png" href="assets/img/logohp.ico"/>
+        <meta name="Description" content="Hackers Poulette landing page">
         <title>Hackers Poulette</title>
     </head>
     <body>

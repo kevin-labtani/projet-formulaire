@@ -11,6 +11,7 @@ const validateFirstName = () => {
     firstName.classList.add("invalid");
     errorText.textContent = "Please use valid characters only";
   } else {
+    errorText.textContent = "";
     if (firstName.value.length < 20) {
       firstName.classList.remove("invalid");
     }
@@ -25,6 +26,7 @@ const validateLastName = () => {
     lastName.classList.add("invalid");
     errorText.textContent = "Please use valid characters only";
   } else {
+    errorText.textContent = "";
     if (lastName.value.length < 20) {
       lastName.classList.remove("invalid");
     }
@@ -32,6 +34,9 @@ const validateLastName = () => {
 };
 
 // validate email and toggle red underline based on status
+// https://en.wikipedia.org/wiki/Email_address#Local-part
+// validating email address is tricky...
+// just because things are allowed in the standard doesn't mean that the big email providers allow them....
 const validateEmail = () => {
   const email = document.querySelector("#email");
   const errorText = document.querySelector(".email-error");
@@ -40,6 +45,7 @@ const validateEmail = () => {
     email.classList.add("invalid");
     errorText.textContent = "Please use valid characters only";
   } else {
+    errorText.textContent = "";
     email.classList.remove("invalid");
   }
 };
