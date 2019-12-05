@@ -78,6 +78,25 @@ if (isset($_POST['submit'])) {
     if (empty($SanitizedResult['gender'])) {
         $errors['gender'] = 'You must select your gender';
     }
+
+    // SENDING EMAIL
+    // var
+    $submit_message = '';
+    $honeypot = $_POST['Name'];
+    //informations to put inside the email
+    $mail_to = 'loiclissens@gmail.com';
+    $subject_mail = 'Subject: '.implode(',', $_POST['topic']);
+    $content_mail = 'From: '.$SanitizedResult['fistName'].' '.$SanitizedResult['lastName']."\n"
+                        .'Live in: '.$SanitizedResult['country']."\n"
+                        .'Gender: '.$SanitizedResult['gender']."\n"
+                        .'Email: '.$SanitizedResult['email']."\n"
+                        .'Message: '.$SanitizedResult['message'];
+
+    if (empty($honeypot)) {
+        //header('Location: index.php#contact'); Probleme, les chmap se vident plus voir si le tab est vide
+        $submit_message = 'Thank you for your submission, an email has been send to our team!';
+        mail($mail_to, $subject_mail, $content_mail);
+    }
 }
 
 // generate country selector
@@ -127,30 +146,26 @@ function topicSelector($topic)
 
     foreach ($topic as $key => $value) {
         $selected = '';
-        if ((in_array($key, $_POST['topic']))) {
-            $selected = 'selected';
-        }
-        echo "<option {$selected} value={$key}>{$value}</option>";
-    }
-}
-// SENDING EMAIL
-// var
-$submit_message = 'Thanks to enter validate informations.';
-$honeypot = $_POST['Name'];
-//informations to put inside the email
-$mail_to = 'loiclissens@gmail.com';
-$subject_mail = 'Subject: '.implode(',', $_POST['topic']);
-$content_mail = 'From: '.$SanitizedResult['fistName'].' '.$SanitizedResult['lastName']."\n"
+        // SENDING EMAIL
+        // var
+        $submit_message = 'Thanks to enter validate informations.';
+        $honeypot = $_POST['Name'];
+        //informations to put inside the email
+        $mail_to = 'loiclissens@gmail.com';
+        $subject_mail = 'Subject: '.implode(',', $_POST['topic']);
+        $content_mail = 'From: '.$SanitizedResult['fistName'].' '.$SanitizedResult['lastName']."\n"
                         .'Live in: '.$SanitizedResult['country']."\n"
                         .'Gender: '.$SanitizedResult['gender']."\n"
                         .'Email: '.$SanitizedResult['email']."\n"
                         .'Message: '.$SanitizedResult['message'];
-    //function sending
-if (isset($_POST['submit'])) {
-    if (empty($honeypot)) {
-        //header('Location: index.php#contact'); Probleme, les chmap se vident plus voir si le tab est vide
-        $submit_message = 'Thank for your submition, an email has been send !';
-        mail($mail_to, $subject_mail, $content_mail);
+
+        if (empty($honeypot)) {
+            //header('Location: index.php#contact'); Probleme, les chmap se vident plus voir si le tab est vide
+            $submit_message = 'Thank for your submition, an email has been send !';
+            mail($mail_to, $subject_mail, $content_mail);
+        }
+
+        echo "<option {$selected} value={$key}>{$value}</option>";
     }
 }
 
