@@ -143,28 +143,11 @@ $topic = [
 function topicSelector($topic)
 {
     echo'<option value="" disabled selected>Choose your message topic</option>';
-
     foreach ($topic as $key => $value) {
         $selected = '';
-        // SENDING EMAIL
-        // var
-        $submit_message = 'Thanks to enter validate informations.';
-        $honeypot = $_POST['Name'];
-        //informations to put inside the email
-        $mail_to = 'loiclissens@gmail.com';
-        $subject_mail = 'Subject: '.implode(',', $_POST['topic']);
-        $content_mail = 'From: '.$SanitizedResult['fistName'].' '.$SanitizedResult['lastName']."\n"
-                        .'Live in: '.$SanitizedResult['country']."\n"
-                        .'Gender: '.$SanitizedResult['gender']."\n"
-                        .'Email: '.$SanitizedResult['email']."\n"
-                        .'Message: '.$SanitizedResult['message'];
-
-        if (empty($honeypot)) {
-            //header('Location: index.php#contact'); Probleme, les chmap se vident plus voir si le tab est vide
-            $submit_message = 'Thank for your submition, an email has been send !';
-            mail($mail_to, $subject_mail, $content_mail);
+        if ((in_array($key, $_POST['topic']))) {
+            $selected = 'selected';
         }
-
         echo "<option {$selected} value={$key}>{$value}</option>";
     }
 }
