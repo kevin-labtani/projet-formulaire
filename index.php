@@ -91,8 +91,8 @@ if (isset($_POST['submit'])) {
                         .'Gender: '.$SanitizedResult['gender']."\n"
                         .'Email: '.$SanitizedResult['email']."\n"
                         .'Message: '.$SanitizedResult['message'];
-
-    if (empty($honeypot)) {
+    //  !array_filter use to check if the errors arrey is empty
+    if (empty($honeypot) and !array_filter($errors)) {
         //header('Location: index.php#contact'); Probleme, les chmap se vident plus voir si le tab est vide
         $submit_message = 'Thank you for your submission, an email has been send to our team!';
         mail($mail_to, $subject_mail, $content_mail);
